@@ -22,11 +22,13 @@ jobs:
       - name: Set up Flutter
         uses: subosito/flutter-action@v2
         with:
-          flutter-version: '3.44.0'
           channel: 'stable'
 
       - name: Install dependencies
         run: flutter pub get
+
+      - name: Generate translations
+        run: dart run slang
 
       - name: Build APK
         run: flutter build apk --release --split-per-abi

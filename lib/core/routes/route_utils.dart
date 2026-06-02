@@ -19,8 +19,8 @@ abstract class RouteUtils {
 
   static Route<T> getPageRouteBuilder<T>(Widget page) {
     return PageRouteBuilder<T>(
-      transitionDuration: const Duration(milliseconds: 350),
-      reverseTransitionDuration: const Duration(milliseconds: 350),
+      transitionDuration: const Duration(milliseconds: 300),
+      reverseTransitionDuration: const Duration(milliseconds: 300),
       transitionsBuilder: (context, animation, secondaryAnimation, child) {
         const transitionBuilder = FadeForwardsPageTransitionsBuilder();
         return transitionBuilder.buildTransitions(

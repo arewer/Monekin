@@ -83,8 +83,8 @@ class TrendingValue extends StatelessWidget {
               )
               .withBlue(225)
         : percentage > 0
-        ? AppColors.of(context).success
-        : AppColors.of(context).danger;
+        ? AppColors.of(context).incomeColor
+        : AppColors.of(context).expenseColor;
   }
 
   @override

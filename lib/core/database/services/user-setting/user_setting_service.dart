@@ -51,6 +51,18 @@ enum SettingKey {
 
   /// Whether to show the time of the transaction in the transaction list tiles
   transactionTileShowTime,
+
+  /// Key to storage the border radius scale. Could be 'compact', 'defaultScale', 'rounded' or 'pill'.
+  /// Defaults to 'defaultScale' (12px) if not set.
+  borderRadiusScale,
+
+  /// Key to storage the card visual style. Could be 'flat', 'elevated' or 'outlined'.
+  /// Defaults to 'elevated' if not set.
+  cardStyle,
+
+  /// Key to storage whether high-contrast mode is enabled. Could be '1' (true) or '0' (false).
+  /// High-contrast mode increases text/background contrast for accessibility.
+  contrastMode,
 }
 
 final Map<SettingKey, String?> appStateSettings = {};

@@ -26,7 +26,7 @@ class AnimatedExpanded extends StatefulWidget {
     this.expand = false,
     required this.child,
     this.duration = const Duration(milliseconds: 425),
-    this.sizeCurve = Curves.fastOutSlowIn,
+    this.sizeCurve = Curves.easeOutCubic,
     this.axis = Axis.vertical,
     super.key,
   });
@@ -124,7 +124,7 @@ class AnimatedSizeSwitcher extends StatelessWidget {
     if (enabled == false) return child;
 
     return AnimatedSize(
-      curve: Curves.easeInOutCubicEmphasized,
+      curve: Curves.easeOutCubic,
       duration: duration,
       clipBehavior: Clip.hardEdge,
       child: AnimatedSwitcher(

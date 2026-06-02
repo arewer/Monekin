@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:monekin/core/extensions/color.extensions.dart';
 import 'package:monekin/core/presentation/animations/fade_in.dart';
+import 'package:monekin/core/presentation/app_colors.dart';
 import 'package:monekin/core/presentation/theme.dart';
 import 'package:monekin/core/presentation/widgets/number_ui_formatters/ui_number_formatter.dart';
 
@@ -50,7 +51,7 @@ class _AnimatedProgressBarState extends State<AnimatedProgressBar> {
 
     final mainBar = TweenAnimationBuilder<double>(
       duration: Duration(milliseconds: widget.animationDuration),
-      curve: Curves.easeInOutCubic,
+      curve: Curves.easeOutCubic,
       tween: Tween<double>(begin: 0, end: widget.value),
       builder: (context, value, child) {
         if (value.isNaN) value = 0;
@@ -60,7 +61,7 @@ class _AnimatedProgressBarState extends State<AnimatedProgressBar> {
           child: Container(
             height: isHorizontal ? widget.width : double.infinity,
             width: isHorizontal ? double.infinity : widget.width,
-            decoration: BoxDecoration(color: barColor.withOpacity(0.12)),
+            decoration: BoxDecoration(color: AppColors.of(context).shimmerBase),
             child: FractionallySizedBox(
               widthFactor: isHorizontal ? value : 1,
               heightFactor: isHorizontal ? 1 : value,

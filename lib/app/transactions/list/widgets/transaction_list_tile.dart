@@ -210,7 +210,7 @@ class TransactionListTile extends StatelessWidget {
               color: transaction.status == TransactionStatus.voided
                   ? Colors.grey.shade400
                   : transaction.isIncomeOrExpense
-                  ? transaction.type.color(context)
+                  ? (transaction.type == TransactionType.income ? AppColors.of(context).incomeColor : AppColors.of(context).expenseColor)
                   : null,
               decoration: transaction.status == TransactionStatus.voided
                   ? TextDecoration.lineThrough

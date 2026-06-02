@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:monekin/core/routes/destinations.dart';
 import 'package:monekin/core/utils/unique_app_widgets_keys.dart';
+import 'package:monekin/core/presentation/app_colors.dart';
 
 /// Bottom navigation bar used in mobile layout
 class AppBottomBar extends StatelessWidget {
@@ -27,15 +28,21 @@ class AppBottomBar extends StatelessWidget {
       }
     }
 
-    return NavigationBar(
-      backgroundColor: Theme.of(context).colorScheme.surfaceContainerHigh,
-      indicatorColor: Theme.of(context).colorScheme.primary.withOpacity(0.2),
+    return Container(
+      decoration: BoxDecoration(
+        border: Border(
+          top: BorderSide(
+            color: AppColors.of(context).dividerColor,
+            width: 0.5,
+          ),
+        ),
+      ),
+      child: NavigationBar(
       destinations: menuItems
           .map((e) => e.toNavigationDestinationWidget(context))
           .toList(),
       selectedIndex: selectedNavItemIndex,
-      onDestinationSelected: (e) =>
-          tabsPageKey.currentState?.changePage(menuItems.elementAt(e).id),
+      ),
     );
   }
 }

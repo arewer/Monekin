@@ -45,6 +45,9 @@ class PageFramework extends StatelessWidget {
       }
 
       return AppBar(
+        elevation: 0,
+        scrolledUnderElevation: 0.5,
+        surfaceTintColor: Colors.transparent,
         key: ValueKey('AppBar_${title ?? ''}'),
         title: Text(title ?? ''),
         bottom: tabBar,

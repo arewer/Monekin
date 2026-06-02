@@ -34,13 +34,16 @@ class IncomeOrExpenseCard extends StatelessWidget {
           Container(
             padding: const EdgeInsets.all(6),
             decoration: BoxDecoration(
-              color: type.color(context),
-              borderRadius: BorderRadius.circular(80),
+              color: (type == TransactionType.income ? AppColors.of(context).incomeColor : AppColors.of(context).expenseColor).withOpacity(0.15),
+              shape: BoxShape.circle,
             ),
-            child: Icon(
-              type.icon,
-              color: Theme.of(context).colorScheme.surface,
-              size: 22,
+            child: Container(
+              width: 8,
+              height: 8,
+              decoration: BoxDecoration(
+                color: type == TransactionType.income ? AppColors.of(context).incomeColor : AppColors.of(context).expenseColor,
+                shape: BoxShape.circle,
+              ),
             ),
           ),
           const SizedBox(width: 12),

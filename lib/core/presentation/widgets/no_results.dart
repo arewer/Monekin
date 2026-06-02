@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:monekin/core/presentation/animations/fade_in.dart';
 import 'package:monekin/core/presentation/animations/scaled_animated_switcher.dart';
+import 'package:monekin/core/presentation/app_colors.dart';
 import 'package:monekin/core/presentation/theme.dart';
 
 class NoResults extends StatelessWidget {
@@ -30,7 +31,7 @@ class NoResults extends StatelessWidget {
   Widget build(BuildContext context) {
     return FadeIn(
       child: Opacity(
-        opacity: isAppInLightBrightness(context) ? 1 : 0.9,
+        opacity: 0.6,
         child: Center(
           child: Padding(
             padding:
@@ -76,7 +77,7 @@ class NoResults extends StatelessWidget {
                     ),
                   ),
 
-                if (showIllustration) const SizedBox(height: 30),
+                if (showIllustration) const SizedBox(height: 48),
 
                 if (title != null) ...[
                   Text(
@@ -89,7 +90,10 @@ class NoResults extends StatelessWidget {
                 Text(
                   description,
                   textAlign: TextAlign.center,
-                  style: const TextStyle(fontWeight: FontWeight.w300),
+                  style: TextStyle(
+                    fontWeight: FontWeight.w400,
+                    color: AppColors.of(context).textSecondary,
+                  ),
                 ),
 
                 if (bottom != null) ...[const SizedBox(height: 16), bottom!],

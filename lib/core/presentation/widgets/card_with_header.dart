@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:monekin/core/presentation/styles/borders.dart';
+import 'package:monekin/core/presentation/theme.dart';
+import 'package:monekin/core/presentation/app_colors.dart';
 import 'package:monekin/i18n/generated/translations.g.dart';
 
 /// The radius of the `CardWithHeader` widget, a very useful widget through the app
@@ -28,7 +30,11 @@ class CardWithHeader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return DecoratedBox(
-      decoration: BoxDecoration(boxShadow: boxShadowGeneral(context)),
+      decoration: BoxDecoration(
+        boxShadow: boxShadowGeneral(context),
+        border: getCardBorderForStyle(context),
+        borderRadius: BorderRadius.circular(getCardBorderRadius()),
+      ),
       child: Card(
         clipBehavior: Clip.hardEdge,
         margin: const EdgeInsets.all(0),
@@ -40,10 +46,10 @@ class CardWithHeader extends StatelessWidget {
             Container(
               clipBehavior: Clip.hardEdge,
               padding: const EdgeInsets.fromLTRB(16, 12, 2, 4),
-              decoration: const BoxDecoration(
+              decoration: BoxDecoration(
                 borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(12),
-                  topRight: Radius.circular(12),
+                  topLeft: Radius.circular(getCardBorderRadius()),
+                  topRight: Radius.circular(getCardBorderRadius()),
                 ),
                 // color: AppColors.of(context).light,
               ),
@@ -56,7 +62,7 @@ class CardWithHeader extends StatelessWidget {
                       DefaultTextStyle(
                         style: Theme.of(
                           context,
-                        ).textTheme.titleMedium!.copyWith(fontSize: 18),
+                        ).textTheme.titleMedium!.copyWith(fontWeight: FontWeight.w600),
                         child: titleBuilder != null
                             ? titleBuilder!(title)
                             : Text(title),
@@ -64,7 +70,9 @@ class CardWithHeader extends StatelessWidget {
                       if (subtitle != null)
                         Text(
                           subtitle!,
-                          style: Theme.of(context).textTheme.bodySmall!,
+                          style: Theme.of(context).textTheme.bodySmall!.copyWith(
+                            color: AppColors.of(context).textSecondary,
+                          ),
                         ),
                     ],
                   ),
@@ -113,7 +121,7 @@ class CardFooterWithSingleButton extends StatelessWidget {
             thickness: 2,
             indent: indent,
             endIndent: indent,
-            color: Theme.of(context).dividerColor.withOpacity(0.2),
+            color: AppColors.of(context).dividerColor,
           ),
         ),
         TextButton.icon(

@@ -102,10 +102,14 @@ class InlineInfoCard extends StatelessWidget {
       elevation: 0,
       margin: margin,
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(8),
-        side: BorderSide(width: 2, color: iconColor),
+        borderRadius: BorderRadius.circular(getCardBorderRadius()),
       ),
-      child: ResponsiveRowColumn.withSymetricSpacing(
+      child: Container(
+        decoration: BoxDecoration(
+          border: Border(left: BorderSide(color: iconColor, width: 4)),
+          borderRadius: BorderRadius.circular(getCardBorderRadius()),
+        ),
+        child: ResponsiveRowColumn.withSymetricSpacing(
         spacing: 10,
         padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 12),
         direction: direction,
@@ -125,6 +129,7 @@ class InlineInfoCard extends StatelessWidget {
             ),
           ),
         ],
+      ),
       ),
     );
   }

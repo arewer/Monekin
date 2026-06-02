@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:monekin/core/presentation/app_colors.dart';
 import 'package:monekin/i18n/generated/translations.g.dart';
 
 /// Display a dialog with a title, a description and confirm/cancel buttons.
@@ -13,6 +14,7 @@ Future<bool?> confirmDialog(
   String? confirmationText,
   IconData? icon,
   bool canPop = true,
+  bool isDestructive = false,
 }) {
   final t = Translations.of(context);
 
@@ -43,7 +45,16 @@ Future<bool?> confirmDialog(
       canPop: canPop,
       child: AlertDialog.adaptive(
         title: Text(dialogTitle),
-        icon: icon != null ? Icon(icon, size: 36) : null,
+        icon: icon != null 
+            ? Container(
+                padding: const EdgeInsets.all(16),
+                decoration: BoxDecoration(
+                  color: (isDestructive ? AppColors.of(context).danger : Theme.of(context).colorScheme.primary).withOpacity(0.12),
+                  shape: BoxShape.circle,
+                ),
+                child: Icon(icon, size: 36, color: isDestructive ? AppColors.of(context).danger : Theme.of(context).colorScheme.primary),
+              )
+            : null,
         content: SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -66,6 +77,7 @@ Future<bool?> confirmDialog(
               },
             ),
           TextButton(
+            style: isDestructive ? TextButton.styleFrom(foregroundColor: AppColors.of(context).danger) : null,
             child: Text(confirmationText ?? t.general.understood),
             onPressed: () {
               Navigator.of(context, rootNavigator: useRootNavigator).pop(true);

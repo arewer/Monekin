@@ -8,7 +8,7 @@ class AppColors extends ThemeExtension<AppColors> {
 
   final Map<String, Color> colors;
 
-  // Getters for type-safe access with autocompletion
+  // ─── Existing tokens ───
   Color get link => colors['link']!;
   Color get danger => colors['danger']!;
   Color get success => colors['success']!;
@@ -23,11 +23,49 @@ class AppColors extends ThemeExtension<AppColors> {
   Color get white => colors['white']!;
   Color get black => colors['black']!;
 
+  // ─── New semantic tokens ───
+  /// Mid-emphasis text color (between textBody and textHint).
+  Color get textSecondary => colors['textSecondary']!;
+
+  /// Card background color — applies to flat/elevated/outlined cards.
+  Color get cardBackground => colors['cardBackground']!;
+
+  /// Elevated card background — slightly more prominent than cardBackground.
+  Color get cardBackgroundElevated => colors['cardBackgroundElevated']!;
+
+  /// Subtle card border color (for outlined card style).
+  Color get cardBorder => colors['cardBorder']!;
+
+  /// Dedicated color for income amounts and indicators.
+  Color get incomeColor => colors['incomeColor']!;
+
+  /// Dedicated color for expense amounts and indicators.
+  Color get expenseColor => colors['expenseColor']!;
+
+  /// Dedicated color for transfer amounts and indicators.
+  Color get transferColor => colors['transferColor']!;
+
+  /// Themed divider color.
+  Color get dividerColor => colors['dividerColor']!;
+
+  /// Shimmer skeleton loading base color.
+  Color get shimmerBase => colors['shimmerBase']!;
+
+  /// Shimmer skeleton loading highlight color.
+  Color get shimmerHighlight => colors['shimmerHighlight']!;
+
+  /// Dashboard header gradient start color.
+  Color get headerGradientStart => colors['headerGradientStart']!;
+
+  /// Dashboard header gradient end color.
+  Color get headerGradientEnd => colors['headerGradientEnd']!;
+
   static AppColors fromColorScheme(ColorScheme colorScheme) {
     final isDark = colorScheme.brightness == Brightness.dark;
 
     return AppColors(
       colors: {
+        // ─── Existing tokens ───
         'link': isDark ? Colors.blue.shade200 : Colors.blue.shade700,
         'danger': isDark ? Colors.redAccent : Colors.red,
         'success': isDark
@@ -55,6 +93,62 @@ class AppColors extends ThemeExtension<AppColors> {
             : colorScheme.onPrimary,
         'white': !isDark ? Colors.white : Colors.black,
         'black': isDark ? Colors.white : Colors.black,
+
+        // ─── New semantic tokens ───
+        'textSecondary': isDark
+            ? const Color.fromARGB(220, 180, 180, 180)
+            : const Color.fromARGB(255, 95, 95, 95),
+        'cardBackground': isDark
+            ? Color.alphaBlend(
+                colorScheme.primary.withOpacity(0.06),
+                colorScheme.surface,
+              )
+            : Color.alphaBlend(
+                colorScheme.primary.withOpacity(0.03),
+                Colors.white,
+              ),
+        'cardBackgroundElevated': isDark
+            ? Color.alphaBlend(
+                colorScheme.primary.withOpacity(0.10),
+                colorScheme.surface,
+              )
+            : Color.alphaBlend(
+                colorScheme.primary.withOpacity(0.05),
+                Colors.white,
+              ),
+        'cardBorder': isDark
+            ? colorScheme.outlineVariant.withOpacity(0.3)
+            : colorScheme.outlineVariant.withOpacity(0.5),
+        'incomeColor': isDark
+            ? const Color(0xFF81C784)
+            : const Color(0xFF2E7D32),
+        'expenseColor': isDark
+            ? const Color(0xFFEF9A9A)
+            : const Color(0xFFC62828),
+        'transferColor': isDark
+            ? const Color(0xFF90CAF9)
+            : const Color(0xFF1565C0),
+        'dividerColor': isDark
+            ? Colors.white.withOpacity(0.08)
+            : Colors.black.withOpacity(0.06),
+        'shimmerBase': isDark
+            ? Colors.white.withOpacity(0.06)
+            : Colors.black.withOpacity(0.04),
+        'shimmerHighlight': isDark
+            ? Colors.white.withOpacity(0.12)
+            : Colors.black.withOpacity(0.08),
+        'headerGradientStart': isDark
+            ? colorScheme.primaryContainer
+            : colorScheme.primary,
+        'headerGradientEnd': isDark
+            ? Color.alphaBlend(
+                colorScheme.primaryContainer.withOpacity(0.7),
+                colorScheme.surface,
+              )
+            : Color.alphaBlend(
+                colorScheme.primary.withOpacity(0.85),
+                colorScheme.primaryContainer,
+              ),
       },
     );
   }

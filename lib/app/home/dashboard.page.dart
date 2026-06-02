@@ -162,7 +162,8 @@ class _DashboardPageState extends State<DashboardPage> {
     return SkeletonizerConfig(
       data: _getSkeletonizerConfig(context),
       child: Card(
-        color: AppColors.of(context).consistentPrimary,
+        color: Colors.transparent,
+        elevation: 0,
         margin: EdgeInsets.only(
           bottom: 0,
           top: shouldHavePadding ? 8 : 0,
@@ -175,7 +176,21 @@ class _DashboardPageState extends State<DashboardPage> {
             top: Radius.circular(shouldHavePadding ? getCardBorderRadius() : 0),
           ),
         ),
-        child: Padding(
+        child: Container(
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.vertical(
+              bottom: Radius.circular(getCardBorderRadius()),
+              top: Radius.circular(shouldHavePadding ? getCardBorderRadius() : 0),
+            ),
+            gradient: LinearGradient(
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+              colors: [
+                AppColors.of(context).headerGradientStart,
+                AppColors.of(context).headerGradientEnd,
+              ],
+            ),
+          ),
           padding: EdgeInsets.fromLTRB(
             _isIncomeExpenseAtSameLevel(context) ? 24 : 16,
             16,
@@ -192,12 +207,7 @@ class _DashboardPageState extends State<DashboardPage> {
                   buildDatePeriodSelector(context),
                 ],
               ),
-              Divider(
-                height: 16,
-                color: AppColors.of(
-                  context,
-                ).onConsistentPrimary.withOpacity(0.5),
-              ),
+              const SizedBox(height: 16),
               const SizedBox(height: 8),
               Builder(
                 builder: (context) {
@@ -360,7 +370,14 @@ class _DashboardPageState extends State<DashboardPage> {
             bottomLeft: Radius.circular(16),
             bottomRight: Radius.circular(16),
           ),
-          color: AppColors.of(context).consistentPrimary,
+          gradient: LinearGradient(
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+            colors: [
+              AppColors.of(context).headerGradientStart,
+              AppColors.of(context).headerGradientEnd,
+            ],
+          ),
         ),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
